@@ -4,29 +4,26 @@ import { Center } from '../Center'
 import { HomeNavProps } from '../ParamLists/HomeParamList'
 
 function apiCall(x: any) {
-    return x
+  return x
 }
 
-export const EditProduct = ({
-    route,
-    navigation,
-}: HomeNavProps<'EditProduct'>) => {
-    const [formState] = useState()
-    const submit = useRef(() => {})
+export const EditProduct = ({ route, navigation }: HomeNavProps<'EditProduct'>) => {
+  const [formState] = useState()
+  const submit = useRef(() => {})
 
-    submit.current = () => {
-        //api call with new form state
-        apiCall(formState)
-        navigation.goBack()
-    }
+  submit.current = () => {
+    //api call with new form state
+    apiCall(formState)
+    navigation.goBack()
+  }
 
-    useEffect(() => {
-        navigation.setParams({ submit })
-    }, [])
+  useEffect(() => {
+    navigation.setParams({ submit })
+  }, [])
 
-    return (
-        <Center>
-            <Text>editing {route.params.name}...</Text>
-        </Center>
-    )
+  return (
+    <Center>
+      <Text>editing {route.params.name}...</Text>
+    </Center>
+  )
 }

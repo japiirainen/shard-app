@@ -11,31 +11,31 @@ import { addProductRoutes } from '../addProductRoutes'
 const Stack = createStackNavigator<HomeParamList>()
 
 export const HomeStack = () => {
-	const { logout } = useContext(AuthContext)
+  const { logout } = useContext(AuthContext)
 
-	return (
-		<Stack.Navigator initialRouteName='Feed'>
-			{addProductRoutes(Stack as any)}
-			<Stack.Screen
-				options={{
-					headerRight: () => {
-						return (
-							<TouchableOpacity onPress={() => logout()}>
-								<Text style={styles.headerRight}>Logout</Text>
-							</TouchableOpacity>
-						)
-					},
-				}}
-				name='Feed'
-				component={Feed}
-			/>
-		</Stack.Navigator>
-	)
+  return (
+    <Stack.Navigator initialRouteName="Feed">
+      {addProductRoutes(Stack as any)}
+      <Stack.Screen
+        options={{
+          headerRight: () => {
+            return (
+              <TouchableOpacity onPress={() => logout()}>
+                <Text style={styles.headerRight}>Logout</Text>
+              </TouchableOpacity>
+            )
+          },
+        }}
+        name="Feed"
+        component={Feed}
+      />
+    </Stack.Navigator>
+  )
 }
 
 const styles = StyleSheet.create({
-	headerRight: {
-		color: 'red',
-		paddingRight: 10,
-	},
+  headerRight: {
+    color: 'red',
+    paddingRight: 10,
+  },
 })

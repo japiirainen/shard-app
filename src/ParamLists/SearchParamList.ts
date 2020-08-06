@@ -3,10 +3,10 @@ import { RouteProp } from '@react-navigation/native'
 import { ProductParamList } from './ProductParamList'
 
 export type SearchParams = {
-	Search: undefined
+  Search: undefined
 } & ProductParamList
 
 export type SearchNavProps<T extends keyof SearchParams> = {
-	navigation: StackNavigationProp<SearchParams, T>
-	route: RouteProp<SearchParams, T>
+  navigation: StackNavigationProp<SearchParams, T>
+  route: RouteProp<SearchParams, T>
 }

@@ -3,10 +3,10 @@ import { RouteProp } from '@react-navigation/native'
 import { ProductParamList } from './ProductParamList'
 
 export type HomeParamList = {
-	Feed: undefined
+  Feed: undefined
 } & ProductParamList
 
 export type HomeNavProps<T extends keyof HomeParamList> = {
-	navigation: StackNavigationProp<HomeParamList, T>
-	route: RouteProp<HomeParamList, T>
+  navigation: StackNavigationProp<HomeParamList, T>
+  route: RouteProp<HomeParamList, T>
 }
