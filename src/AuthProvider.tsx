@@ -1,15 +1,25 @@
 import React, { createContext, useState } from 'react'
 import { AsyncStorage } from 'react-native'
+import { m } from './magic'
 
-type User = null | { userName: String }
-
+type User = null | { email: String }
+const handleLogin = async (email: string) => {
+  if (email) {
+    await m.auth.loginWithMagicLink({ email })
+    const userMetaData = await m.user.getMetadata()
+    if (userMetaData.issuer) AsyncStorage.setItem('token', userMetaData.issuer)
+    return userMetaData.email
+  }
+  throw new Error()
+}
+export const isLoggedIn = async () => await m.user.isLoggedIn()
 export const AuthContext = createContext<{
   user: User
-  login: () => void
+  login: (email: string) => Promise<string | null>
   logout: () => void
 }>({
   user: null,
-  login: () => {},
+  login: handleLogin,
   logout: () => {},
 })
 
@@ -19,11 +29,7 @@ export const AuthProvider: React.FC = ({ children }) => {
     <AuthContext.Provider
       value={{
         user,
-        login: () => {
-          const fakeUser: User = { userName: 'Joona' }
-          setUser(fakeUser)
-          AsyncStorage.setItem('user', JSON.stringify(fakeUser))
-        },
+        login: handleLogin,
         logout: () => {
           setUser(null)
           AsyncStorage.removeItem('user')

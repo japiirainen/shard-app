@@ -14,7 +14,7 @@ export const Routes: React.FC = () => {
     AsyncStorage.getItem('user')
       .then(userString => {
         if (userString) {
-          login()
+          login('as')
         }
         setLoading(false)
       })
